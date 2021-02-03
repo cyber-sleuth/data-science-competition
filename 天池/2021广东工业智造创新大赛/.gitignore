@@ -1,0 +1,6 @@
+.vscode
+.idea
+.ipynb_checkpoints
+slice
+runs
+*.zip

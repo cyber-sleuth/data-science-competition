@@ -20,7 +20,7 @@
 - 2卡2070s训练，训练时间<6hour。
 
 **测试:**
-1.16更新，设置大overlap加上经过NMS后处理，切图预测的表现大幅提升，比原图预测高一个点。
+1.16更新，设置大overlap加上经过 NMS后处理，切图预测的表现大幅提升，比原图预测高一个点。
 ​	单卡:RTX 2070s
 
 - 切成 640x640 滑动窗口预测，耗时<1.5 h, 平均一张图<3s!.线上50.（低于原图预测的结果我是没想到的,没有NMS后处理？或者代码写错了?或者滑窗就是不行?）
@@ -68,7 +68,7 @@ python make_yolov5_train_val.py #制作yolov5的train/val.
 - 从原图左上角开始切图,切出来图像的左上角记为x,y,
 - 那么可以容易想到y依次为:0,512,1024,....,5120.但接下来却并非是5632,因为5632+640>6000,所以这里要对切图的overlop做一个调整,最后一步的y=6000-640.(这是最关键的一点！！！)
 
-<img src="slice/5.png" alt="切出缺陷位置" style="zoom:33%;" />
+<img src="assets/5.png" alt="切出缺陷位置" style="zoom:33%;" />
 
 #### 关于标签的变化
 
@@ -85,11 +85,11 @@ python make_yolov5_train_val.py #制作yolov5的train/val.
 
 
 
-<img src="slice/3.jpg" alt="几何关系" style="zoom:50%;" />
+<img src="assets/3.jpg" alt="几何关系" style="zoom:50%;" />
 
 **可视化证明标签变化正确:**
 
-<img src="slice/6.png" style="zoom:50%;" />
+<img src="assets/6.png" style="zoom:50%;" />
 
 #### 关于推理
 

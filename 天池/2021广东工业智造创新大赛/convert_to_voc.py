@@ -3,33 +3,34 @@ import json
 import codecs
 
 class_name_dic = {
-  "0": "背景",
-  "1": "边异常",
-  "2": "角异常",
-  "3": "白色点瑕疵",
-  "4": "浅色块瑕疵",
-  "5": "深色点块瑕疵",
-  "6": "光圈瑕疵"
- }
-rawImgDir='/media/ssd/compete_datasets/tile_round1_train_20201231/train_imgs/'
-rawLabelDir='/media/ssd/compete_datasets/tile_round1_train_20201231/train_annos.json'
-anno_dir='./yolov5/voc/Annotations/'
+    "0": "背景",
+    "1": "边异常",
+    "2": "角异常",
+    "3": "白色点瑕疵",
+    "4": "浅色块瑕疵",
+    "5": "深色点块瑕疵",
+    "6": "光圈瑕疵"
+}
+rawImgDir = 'E:/Datasets/tile_round1/tile_round1_train_20201231/train_imgs/'
+rawLabelPath = 'E:/Datasets/tile_round1/tile_round1_train_20201231/train_annos.json'
+anno_dir = './slice/voc_style_annotations/'
+
 if not os.path.exists(anno_dir):
     os.makedirs(anno_dir)
-with open(rawLabelDir) as f:
-    annos=json.load(f)
+with open(rawLabelPath) as f:
+    annos = json.load(f)
 
 #
-image_ann={}
+image_ann = {}
 for i in range(len(annos)):
-    anno=annos[i]
+    anno = annos[i]
     name = anno['name']
     if name not in image_ann:
-        image_ann[name]=[]
+        image_ann[name] = []
     image_ann[name].append(i)
 #
 for name in image_ann.keys():
-    indexs=image_ann[name]
+    indexs = image_ann[name]
     height, width = annos[indexs[0]]["image_height"], annos[indexs[0]]["image_width"]
     #
     with codecs.open(anno_dir + name[:-4] + '.xml', 'w', 'utf-8') as xml:

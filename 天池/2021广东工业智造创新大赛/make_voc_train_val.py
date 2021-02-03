@@ -5,8 +5,8 @@ import os
 import random
 import sys
 
-use_slice=True
-root_path = './yolov5/slice'
+use_slice=False
+root_path = './slice'
 
 xmlfilepath = root_path + '/Annotations'
 
@@ -25,6 +25,7 @@ tv = int(num * trainval_percent)
 tr = int(tv * train_percent)
 trainval = random.sample(list, tv)
 train = random.sample(trainval, tr)
+
 if use_slice:
     train=[]
     for i in range(num):
